@@ -17,13 +17,15 @@ from instructions import PatchInitCfg
 
 if __name__ == '__main__':
     parser = ArgumentParser(description='Adversarial Programs')
-    parser.add_argument('-d', '--dataset', help='Dataset', required=True)
+    parser.add_argument('-d', '--dataset', help='Dataset', required=True, choices=['mnist', 'fashion-mnist',
+                                                                                   'cifar10', 'imagenet'])
     parser.add_argument('-g', '--gpus', help='Allowed GPUs', required=True)
-    parser.add_argument('-p', '--parallel', help='number of concurrent processes per GPU', required=True)
-    parser.add_argument('-s', '--num_samples', help='number of samples to attack', required=True)
-    parser.add_argument('-a', '--attacks_per_sample', help='number of attacks per sample', required=True)
-    parser.add_argument('-i', '--instructions', help='number of maximal instructions (patch sequences)', required=True)
-    parser.add_argument('-c', '--candidates', help='number of candidates', required=True)
+    parser.add_argument('-p', '--parallel', help='number of concurrent processes per GPU', required=True, type=int)
+    parser.add_argument('-s', '--num_samples', help='number of samples to attack', required=True, type=int)
+    parser.add_argument('-a', '--attacks_per_sample', help='number of attacks per sample', required=True, type=int)
+    parser.add_argument('-i', '--instructions', help='number of maximal instructions (patches)', required=True,
+                        type=int)
+    parser.add_argument('-c', '--candidates', help='number of candidates', required=True, type=int)
     args = vars(parser.parse_args())
     print(args)
 
